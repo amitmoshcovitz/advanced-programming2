@@ -66,18 +66,18 @@ $ ./client.out {the path unclassified file} {the path to the output file}
 
 ## Implementation
 * The server classification logic:
-- A point class that represent a generic point in space.
-- The classification of every point is saved in a map. The key is the reference and the value is a string representation of the classification.
-- Find k closest objects in O(n) time complexity using the quick select algorithm.
-- Iterating the k closest points and deciding the classification of the object based on the largest number of simular points.
+  - A point class that represent a generic point in space.
+  - The classification of every point is saved in a map. The key is the reference and the value is a string representation of the classification.
+  - Find k closest objects in O(n) time complexity using the quick select algorithm.
+  - Iterating the k closest points and deciding the classification of the object based on the largest number of simular points.
 * The server:
-- Creates a string containing all the information from the socket.
-- Runs the algorithms that was in the previous assignment.
-- Sends the results to the server.
+  - Creates a string containing all the information from the socket.
+  - Runs the algorithms that was in the previous assignment.
+  - Sends the results to the server.
 * The client:
-- Creates a string containing all the information of the provided file.
-- Sends the string to the server.
-- Writing the result to a file.
+  - Creates a string containing all the information of the provided file.
+  - Sends the string to the server.
+  - Writing the result to a file.
 
 
 ## Emailware
