@@ -49,13 +49,13 @@ To clone and run this application, you'll need [Git](https://git-scm.com) instal
 $ git clone https://github.com/amitmoshcovitz/advanced-programming2
 
 # Go into the repository
-$ cd advanced-programming
+$ cd advanced-programming2
 
 # Compile the server
-$ g++ *.cpp server/server.cpp -o server.out
+$ g++ *.cpp server/server.cpp -o server.out -std=c++11
 
 # Compile the client
-$ g++ client/client.cpp -o client.out
+$ g++ client/client.cpp -o client.out -std=c++11
 
 # Run the server
 $ ./server.out {path to classified file} {the k to run the knn on}
