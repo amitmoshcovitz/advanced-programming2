@@ -44,3 +44,37 @@ vector<string> split(string& line, char delimiter) {
     }
     return resultVector;
 }
+
+bool isNumber(string& str) {
+    if (str.empty()) {
+        return false;
+    }
+    bool wasThereADot = false;
+    for (char c : str) {
+        if (!isdigit(c)) {
+            if (wasThereADot) {
+                return false;
+            } else if (c == '.'){
+                wasThereADot = true;
+            } else return false;
+        }
+    }
+    return true;
+}
+
+void trim(string& str) {
+    const string WHITESPACES = " \n\r\t\f\v";
+    size_t last = str.find_last_not_of(WHITESPACES);
+    str = str.substr(0, last + 1);
+}
+
+bool isPoint(string& str) {
+    trim(str);
+    vector<string> splitStr = split(str, ',');
+    for (string& item : splitStr) {
+        if (!isNumber(item)) {
+            return false;
+        }
+    }
+    return true;
+}

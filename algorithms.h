@@ -69,4 +69,24 @@ T kthSmallest(vector<T>& vector, int k, bool(*compare)(T, T)) {
  * @return vector of strings
  */
 vector<string> split(string& line, char delimiter);
+
+/**
+ * Checks if a string is a number (double).
+ * @param str string to check
+ * @return true if the string is a number, false otherwise
+ */
+bool isNumber(string& str);
+
+/**
+ * Checks if a string is a point.
+ * @param str string to check
+ * @return true if the string is a point, false otherwise
+ */
+bool isPoint(string& str);
+
+/**
+ * Trims a string.
+ * @param str string to trim
+ */
+void trim(string& str);
 #endif

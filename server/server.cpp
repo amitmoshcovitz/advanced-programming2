@@ -79,12 +79,8 @@ int Server::acceptClient() const {
     unsigned int addrLen = sizeof(clientSin);
     #endif
 
-    timeval timeout;
-    timeout.tv_sec = 2;
-    timeout.tv_usec = 0;
-
-    if (select(0, nullptr, nullptr, nullptr, &timeout) < 0) {
-        return 0;
+    if (listen(sock, 5) < 0) {
+        perror("error listening to a socket");
     }
     
     int clientSock = accept(sock, (struct sockaddr *) &clientSin,  &addrLen);
@@ -126,13 +122,14 @@ void Server::loadClassified(string fileName) {
 
 void Server::run() {
     char buffer[1 << 12];
-    int clientSock = acceptClient();
-    if (clientSock == 0) {
-        return;
-    }
     int expectedDataLen = sizeof(buffer);
     while (true) {
+        buffer[0] = '\0';
         stringstream ss;
+        int clientSock = acceptClient();
+        if (clientSock <= 0) {
+            return;
+        }
         while (receiveFromClient(clientSock, buffer, expectedDataLen)) {
             ss << buffer;
         }
@@ -141,6 +138,10 @@ void Server::run() {
         string ans = "";
         while (getline(ss, line)) {
             if (line[0] == END) break;
+            if (!isPoint(line)) {
+                ans += "Error: invalid point\n";
+                continue;
+            }
             Point point(line);
             if (!isValid(point)) {
                 ans += "Invalid point\n";
